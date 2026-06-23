@@ -2,7 +2,7 @@
 #SingleInstance Force
 
 ; Launch FanaLab and give it time to initialize the wheel
-Run("C:\Program Files (x86)\Fanatec\FanaLab\FanaLab.exe")
+Run("C:\ProgramData\Microsoft\Windows\Start Menu\Programs\FanaLab.lnk")
 Sleep(8000)
 
 ; Launch ACC via Steam, skipping the Steam library UI
