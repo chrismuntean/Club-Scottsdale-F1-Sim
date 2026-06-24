@@ -33,12 +33,6 @@ if ProcessWait("acc.exe", 120) {
     LogStep("ProcessWait TIMED OUT")
 }
 
-if WinWait("ahk_exe acc.exe", , 120) {
-    LogStep("acc.exe window exists")
-} else {
-    LogStep("WinWait TIMED OUT")
-}
-
 Sleep(2000)  ; give the window a couple seconds to actually render the intro video
 
 CoordMode("Mouse", "Screen")
@@ -65,12 +59,6 @@ Loop {
             LogStep("acc.exe process detected (relaunch)")
         } else {
             LogStep("ProcessWait TIMED OUT (relaunch)")
-        }
-
-        if WinWait("ahk_exe acc.exe", , 120) {
-            LogStep("acc.exe window exists (relaunch)")
-        } else {
-            LogStep("WinWait TIMED OUT (relaunch)")
         }
 
         Sleep(2000)
