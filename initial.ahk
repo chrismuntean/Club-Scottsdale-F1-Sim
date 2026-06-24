@@ -1,7 +1,9 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
-^!x::ExitKiosk()  ; Ctrl+Alt+X closes the launcher
+^!x:: {
+    ExitKiosk()
+}
 
 global SpinnerFrames := ["|", "/", "-", "\"]
 global SpinnerIndex := 1
