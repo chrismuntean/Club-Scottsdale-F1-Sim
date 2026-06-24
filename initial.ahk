@@ -23,6 +23,11 @@ ProcessWait("acc.exe", 120)
 WinWait("ahk_exe acc.exe", , 120)
 WinWaitActive("ahk_exe acc.exe", , 120)
 
+Sleep(2000)  ; let the intro video frame actually render before we click
+CoordMode("Mouse", "Screen")
+Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
+
+Sleep(500)
 HideLoadingScreen()
 
 Loop {
@@ -32,6 +37,12 @@ Loop {
         ProcessWait("acc.exe", 120)
         WinWait("ahk_exe acc.exe", , 120)
         WinWaitActive("ahk_exe acc.exe", , 120)
+        
+        Sleep(2000)  ; let the intro video frame actually render before we click
+        CoordMode("Mouse", "Screen")
+        Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
+        
+        Sleep(500)
         HideLoadingScreen()
     }
     Sleep(2000)
