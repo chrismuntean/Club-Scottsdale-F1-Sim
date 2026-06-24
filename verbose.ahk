@@ -27,25 +27,20 @@ UpdateStatus("Opening Assetto Corsa Competizione...")
 Run("C:\Program Files (x86)\Steam\steam.exe -applaunch 805550")
 LogStep("Steam launch fired, waiting for game process")
 
-if ProcessWait("AC2-Win64-Shipping.exe", 120) {
-    LogStep("AC2-Win64-Shipping.exe process detected")
+if ProcessWait("acc.exe", 120) {
+    LogStep("acc.exe process detected")
 } else {
-    LogStep("ProcessWait TIMED OUT waiting for AC2-Win64-Shipping.exe")
+    LogStep("ProcessWait TIMED OUT")
 }
 
-if WinWait("ahk_exe AC2-Win64-Shipping.exe", , 120) {
-    LogStep("Game window exists")
+if WinWait("ahk_exe acc.exe", , 120) {
+    LogStep("acc.exe window exists")
 } else {
-    LogStep("WinWait TIMED OUT waiting for game window")
+    LogStep("WinWait TIMED OUT")
 }
 
-if WinWaitActive("ahk_exe AC2-Win64-Shipping.exe", , 120) {
-    LogStep("Game window is active")
-} else {
-    LogStep("WinWaitActive TIMED OUT")
-}
+Sleep(2000)  ; give the window a couple seconds to actually render the intro video
 
-Sleep(2000)  ; let the intro video frame actually render before we click
 CoordMode("Mouse", "Screen")
 Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
 LogStep("Click sent")
@@ -60,31 +55,26 @@ try {
 }
 
 Loop {
-    if !ProcessExist("AC2-Win64-Shipping.exe") {
+    if !ProcessExist("acc.exe") {
         LogStep("Game process no longer running, relaunching")
         ShowLoadingScreen("Opening Assetto Corsa Competizione...")
         Run("C:\Program Files (x86)\Steam\steam.exe -applaunch 805550")
         LogStep("Steam relaunch fired, waiting for game process")
 
-        if ProcessWait("AC2-Win64-Shipping.exe", 120) {
-            LogStep("AC2-Win64-Shipping.exe process detected (relaunch)")
+        if ProcessWait("acc.exe", 120) {
+            LogStep("acc.exe process detected (relaunch)")
         } else {
             LogStep("ProcessWait TIMED OUT (relaunch)")
         }
 
-        if WinWait("ahk_exe AC2-Win64-Shipping.exe", , 120) {
-            LogStep("Game window exists (relaunch)")
+        if WinWait("ahk_exe acc.exe", , 120) {
+            LogStep("acc.exe window exists (relaunch)")
         } else {
             LogStep("WinWait TIMED OUT (relaunch)")
         }
 
-        if WinWaitActive("ahk_exe AC2-Win64-Shipping.exe", , 120) {
-            LogStep("Game window is active (relaunch)")
-        } else {
-            LogStep("WinWaitActive TIMED OUT (relaunch)")
-        }
-
         Sleep(2000)
+
         CoordMode("Mouse", "Screen")
         Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
         LogStep("Click sent (relaunch)")
