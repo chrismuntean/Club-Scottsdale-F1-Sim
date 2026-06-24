@@ -2,7 +2,10 @@
 #SingleInstance Force
 
 LogStep(text) {
+    global FooterCtrl
     FileAppend(FormatTime() " - " text "`n", A_ScriptDir "\launcher.log")
+    if IsSet(FooterCtrl)
+        FooterCtrl.Value := "Auto-Launcher by chrismuntean.dev | " text
 }
 
 ^!x:: {
@@ -85,17 +88,21 @@ ExitKiosk() {
 }
 
 ShowLoadingScreen(statusText) {
-    global LoadingGui, SpinnerCtrl, StatusCtrl
+    global LoadingGui, SpinnerCtrl, StatusCtrl, FooterCtrl
     LoadingGui := Gui("-Caption +AlwaysOnTop +ToolWindow")
     LoadingGui.BackColor := "0D0D0D"
     screenW := A_ScreenWidth
     screenH := A_ScreenHeight
+
     LoadingGui.SetFont("s60 cWhite Bold", "Consolas")
     SpinnerCtrl := LoadingGui.Add("Text", "x0 y" (screenH/2 - 120) " w" screenW " Center", "|")
+
     LoadingGui.SetFont("s18 cWhite", "Segoe UI")
     StatusCtrl := LoadingGui.Add("Text", "x0 y" (screenH/2 + 10) " w" screenW " Center", statusText)
+
     LoadingGui.SetFont("s14 c808080", "Segoe UI")
-    LoadingGui.Add("Text", "x0 y" (screenH - 80) " w" screenW " Center", "Auto-Launcher by chrismuntean.dev")
+    FooterCtrl := LoadingGui.Add("Text", "x0 y" (screenH - 80) " w" screenW " Center", "Auto-Launcher by chrismuntean.dev")
+
     LoadingGui.Show("x0 y0 w" screenW " h" screenH)
     SetTimer(SpinSpinner, 120)
 }
