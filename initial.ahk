@@ -1,6 +1,8 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
+^!x::ExitKiosk()  ; Ctrl+Alt+X closes the launcher
+
 ShowLoadingScreen()
 
 ; Launch FanaLab and give it time to initialize the wheel
