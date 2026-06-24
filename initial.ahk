@@ -19,7 +19,7 @@ Sleep(1500)
 
 UpdateStatus("Opening Assetto Corsa Competizione...")
 Run("C:\Program Files (x86)\Steam\steam.exe -applaunch 805550")
-ProcessWait("acc.exe", 60)
+ProcessWait("acc.exe", 120)
 
 HideLoadingScreen()
 
@@ -27,7 +27,7 @@ Loop {
     if !ProcessExist("acc.exe") {
         ShowLoadingScreen("Opening Assetto Corsa Competizione...")
         Run("C:\Program Files (x86)\Steam\steam.exe -applaunch 805550")
-        ProcessWait("acc.exe", 60)
+        ProcessWait("acc.exe", 120)
         HideLoadingScreen()
     }
     Sleep(2000)
