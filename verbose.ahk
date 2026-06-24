@@ -17,7 +17,7 @@ LogStep(text) {
 global SpinnerFrames := ["|", "/", "-", "\"]
 global SpinnerIndex := 1
 
-LogStep("Script started")
+LogStep("Script started")CoordMode("Mouse",CoordMode("Mouse", "Screen") "Screen")
 ShowLoadingScreen("Loading FanaLab...")
 
 ; Launch FanaLab and give it time to initialize the wheel
@@ -45,7 +45,7 @@ try {
     LogStep("HideLoadingScreen FAILED: " err.Message)
 }
 
-Sleep(16000)  ; wait for the intro video to actually be sitting on screen
+Sleep(25000)  ; wait for the intro video to actually be sitting on screen
 
 CoordMode("Mouse", "Screen")
 Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
@@ -71,7 +71,7 @@ Loop {
             LogStep("HideLoadingScreen FAILED (relaunch): " err.Message)
         }
 
-        Sleep(16000)
+        Sleep(25000)
 
         CoordMode("Mouse", "Screen")
         Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
