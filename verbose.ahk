@@ -36,20 +36,18 @@ if ProcessWait("acc.exe", 120) {
     LogStep("ProcessWait TIMED OUT")
 }
 
-Sleep(16000)  ; give the window a couple seconds to actually render the intro video
-
-CoordMode("Mouse", "Screen")
-Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
-LogStep("Click sent")
-
-Sleep(500)
-
 try {
     HideLoadingScreen()
     LogStep("HideLoadingScreen completed")
 } catch as err {
     LogStep("HideLoadingScreen FAILED: " err.Message)
 }
+
+Sleep(16000)  ; wait for the intro video to actually be sitting on screen
+
+CoordMode("Mouse", "Screen")
+Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
+LogStep("Click sent")
 
 Loop {
     if !ProcessExist("acc.exe") {
@@ -64,20 +62,18 @@ Loop {
             LogStep("ProcessWait TIMED OUT (relaunch)")
         }
 
-        Sleep(16000)
-
-        CoordMode("Mouse", "Screen")
-        Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
-        LogStep("Click sent (relaunch)")
-
-        Sleep(500)
-
         try {
             HideLoadingScreen()
             LogStep("HideLoadingScreen completed (relaunch)")
         } catch as err {
             LogStep("HideLoadingScreen FAILED (relaunch): " err.Message)
         }
+
+        Sleep(16000)
+
+        CoordMode("Mouse", "Screen")
+        Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
+        LogStep("Click sent (relaunch)")
     }
     Sleep(2000)
 }
