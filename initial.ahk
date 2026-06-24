@@ -20,8 +20,9 @@ Sleep(1500)
 UpdateStatus("Opening Assetto Corsa Competizione...")
 Run("C:\Program Files (x86)\Steam\steam.exe -applaunch 805550")
 ProcessWait("acc.exe", 120)
+WinWait("ahk_exe acc.exe", , 120)
+WinWaitActive("ahk_exe acc.exe", , 120)
 
-Sleep(8000)
 HideLoadingScreen()
 
 Loop {
@@ -29,7 +30,8 @@ Loop {
         ShowLoadingScreen("Opening Assetto Corsa Competizione...")
         Run("C:\Program Files (x86)\Steam\steam.exe -applaunch 805550")
         ProcessWait("acc.exe", 120)
-        Sleep(8000)
+        WinWait("ahk_exe acc.exe", , 120)
+        WinWaitActive("ahk_exe acc.exe", , 120)
         HideLoadingScreen()
     }
     Sleep(2000)
@@ -42,27 +44,21 @@ ExitKiosk() {
 
 ShowLoadingScreen(statusText) {
     global LoadingGui, SpinnerCtrl, StatusCtrl
-
     LoadingGui := Gui("-Caption +AlwaysOnTop +ToolWindow")
     LoadingGui.BackColor := "0D0D0D"
-
     screenW := A_ScreenWidth
     screenH := A_ScreenHeight
 
-    ; Spinner, dead center
     LoadingGui.SetFont("s60 cWhite Bold", "Consolas")
     SpinnerCtrl := LoadingGui.Add("Text", "x0 y" (screenH/2 - 120) " w" screenW " Center", "|")
 
-    ; Status line, just below the spinner
     LoadingGui.SetFont("s18 cWhite", "Segoe UI")
     StatusCtrl := LoadingGui.Add("Text", "x0 y" (screenH/2 + 10) " w" screenW " Center", statusText)
 
-    ; Brand, pinned to bottom center
     LoadingGui.SetFont("s14 c808080", "Segoe UI")
     LoadingGui.Add("Text", "x0 y" (screenH - 80) " w" screenW " Center", "Auto-Launcher by chrismuntean.dev")
 
     LoadingGui.Show("x0 y0 w" screenW " h" screenH)
-
     SetTimer(SpinSpinner, 120)
 }
 
@@ -80,7 +76,7 @@ UpdateStatus(text) {
 
 HideLoadingScreen() {
     global LoadingGui
-    SetTimer(SpinSpinner, 0)  ; stop the spinner timer so it doesn't error on a destroyed control
+    SetTimer(SpinSpinner, 0)
     if IsSet(LoadingGui)
         LoadingGui.Destroy()
 }
