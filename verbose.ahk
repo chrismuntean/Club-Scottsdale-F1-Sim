@@ -4,8 +4,10 @@
 LogStep(text) {
     global FooterCtrl
     FileAppend(FormatTime() " - " text "`n", A_ScriptDir "\launcher.log")
-    if IsSet(FooterCtrl)
-        FooterCtrl.Value := "Auto-Launcher by chrismuntean.dev | " text
+    try {
+        if IsSet(FooterCtrl)
+            FooterCtrl.Value := "Auto-Launcher by chrismuntean.dev | " text
+    }
 }
 
 ^!x:: {
@@ -116,8 +118,11 @@ UpdateStatus(text) {
 }
 
 HideLoadingScreen() {
-    global LoadingGui
+    global LoadingGui, FooterCtrl, StatusCtrl, SpinnerCtrl
     SetTimer(SpinSpinner, 0)
     if IsSet(LoadingGui)
         LoadingGui.Destroy()
+    FooterCtrl := Unset
+    StatusCtrl := Unset
+    SpinnerCtrl := Unset
 }
