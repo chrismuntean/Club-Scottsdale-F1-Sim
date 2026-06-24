@@ -36,7 +36,7 @@ if ProcessWait("acc.exe", 120) {
     LogStep("ProcessWait TIMED OUT")
 }
 
-Sleep(2000)  ; give the window a couple seconds to actually render the intro video
+Sleep(16000)  ; give the window a couple seconds to actually render the intro video
 
 CoordMode("Mouse", "Screen")
 Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
@@ -64,7 +64,7 @@ Loop {
             LogStep("ProcessWait TIMED OUT (relaunch)")
         }
 
-        Sleep(2000)
+        Sleep(16000)
 
         CoordMode("Mouse", "Screen")
         Click(A_ScreenWidth / 2, A_ScreenHeight / 2)
